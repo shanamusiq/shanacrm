@@ -56,6 +56,7 @@
                 <th>Expiration Date</th>
                 <th>Edit</th>
                 <th>Delete</th>
+                <th>Upgrade</th>
             </tr>
             <c:forEach items="${prospectList}" var="prospect">
                 <tr>
@@ -71,12 +72,13 @@
                     <th><c:out value="${prospect.credit_card_pin}"/></th>
                     <th><c:out value="${prospect.credit_card_exp}"/></th>
                     <th><a href="editProspect.htm?prospect_id=<c:out value='${prospect.prospect_id}'/>">Edit</a></th>
-                    <th><a href="deleteProspect.htm?prospect_id=<c:out value='${prospect.prospect_id}'/>">Delete</a></th>                          
+                    <th><a href="deleteProspect.htm?prospect_id=<c:out value='${prospect.prospect_id}'/>">Delete</a></th>
+                    <th><a href="upgradeProspect.htm?prospect_id=<c:out value='${prospect.prospect_id}'/>">Upgrade</a></th>
                 </tr>
             </c:forEach>
         </table>        
         <br>
-        <a href="editProspect.htm?prospect_id=0">Add Client</a>
+        <a href="editProspect.htm?prospect_id=0">Add Prospect</a>
         
                 <h1> List of Clients </h1>
 
@@ -96,8 +98,9 @@
                 <th>Expiration Date</th>
                 <th>Edit</th>
                 <th>Delete</th>
+                <th>Downgrade</th>
             </tr>
-            <c:forEach items="${clientList}" var="prospect">
+            <c:forEach items="${clientList}" var="client">
                 <tr>
                     <th><c:out value="${client.client_id}"/></th>
                     <th><c:out value="${client.user_id}"/></th>
@@ -112,7 +115,8 @@
                     <th><c:out value="${client.credit_card_pin}"/></th>
                     <th><c:out value="${client.credit_card_exp}"/></th>
                     <th><a href="editClient.htm?client_id=<c:out value='${client.client_id}'/>">Edit</a></th>
-                    <th><a href="deleteClient.htm?client_id=<c:out value='${client.client_id}'/>">Delete</a></th>                          
+                    <th><a href="deleteClient.htm?client_id=<c:out value='${client.client_id}'/>">Delete</a></th>  
+                    <th><a href="downgradeClient.htm?client_id=<c:out value='${client.client_id}'/>">Downgrade</a></th> 
                 </tr>
             </c:forEach>
         </table>        
