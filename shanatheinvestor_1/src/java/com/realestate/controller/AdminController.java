@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  * @author Shana
  */
 @Controller
-@SessionAttributes({"user","prospect"})
+@SessionAttributes({"user", "prospect"})
 public class AdminController {
 
     private AdminService adminService;
@@ -73,10 +73,12 @@ public class AdminController {
         //int result = adminService.delete(user);
         return "redirect:adminPage.htm";
     }
+
     @RequestMapping(value = "/editProspect.htm")
     public String editProspectPage(@RequestParam("prospect_id") int prospect_id, ModelMap model) {
         return "redirect:editProspectPage.htm?prospect_id=" + prospect_id;
     }
+
     @RequestMapping(value = "/editProspectPage.htm")
     public String showEditProspectPage(@RequestParam("user_id") int user_id, ModelMap model) {
         User user = adminService.getUser(user_id);
@@ -98,16 +100,16 @@ public class AdminController {
         System.out.println("Deleting Prospect " + prospect_id);
         //int result = adminService.delete(prospect);
         return "redirect:adminPage.htm";
-        
-       
+
     }
-    
+
     @RequestMapping(value = "/upgradeProspect.htm")
     public String upgradeProspectPage(@RequestParam("prospect_id") int prospect_id, ModelMap model) {
         Prospect prospect = adminService.getProspect(prospect_id);
         adminService.upgrade(prospect);
-        return "redirect:adminPage.htm"; 
+        return "redirect:adminPage.htm";
     }
+
     @RequestMapping(value = "/editClient.htm")
     public String editClientPage(@RequestParam("client_id") int client_id, ModelMap model) {
         return "redirect:editClientPage.htm?client_id=" + client_id;
@@ -115,8 +117,8 @@ public class AdminController {
 
     @RequestMapping(value = "/editClientPage.htm")
     public String showEditClientPage(@RequestParam("client_id") int client_id, ModelMap model) {
-      //  Client client = adminService.getClient(client_id);
-     // model.addAttribute("client", client);
+        //  Client client = adminService.getClient(client_id);
+        // model.addAttribute("client", client);
         return "editClientPage";
     }
 
@@ -134,13 +136,18 @@ public class AdminController {
         System.out.println("Deleting Client " + client_id);
         //int result = adminService.delete(client);
         return "redirect:AdminPage.htm";
-}
+    }
+
     @RequestMapping(value = "/downgradeClient.htm")
     public String downgradeClientPage(@RequestParam("client_id") int client_id, ModelMap model) {
         Client client = adminService.getClient(client_id);
         adminService.downgrade(client);
-        return "redirect:adminPage.htm"; 
+        return "redirect:adminPage.htm";
     }
 
-}
+    @RequestMapping(value = "/GoToInteractionPage.htm")
+    public String GoToInteractionPage(ModelMap model) {
 
+        return "redirect:interactionPage.htm";
+    }
+}

@@ -30,6 +30,9 @@
                 <th>Amount</th>
                 <th>Date</th>
                 <th>Comments</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                
                
             </tr>
             <c:forEach items="${dealList}" var="deal">
@@ -42,13 +45,20 @@
                     <th><c:out value="${deal.property_address}"/></th>
                     <th><c:out value="${deal.property_state}"/></th>
                     <th><c:out value="${deal.property_postal_code}"/></th>
-                    <th><c:out value="${deal.sales_stage}"/></th>
+                    <th><select>
+                            <option value ="0"> <a href="updateDeal.htm?deal_id=<c:out value='${deal.deal_id}'/>">Lead</a> </option>
+                            <option value ="1"> Stage 1 </option>
+                            <option value ="2"> Stage 2 </option>
+                            <option value ="3"> Stage 3 </option>
+                            <option value ="4"> Won </option>
+                        </select>
+                    </th>
                     <th><c:out value="${deal.close_date}"/></th>
                     <th><c:out value="${deal.amount}"/></th>
                     <th><c:out value="${deal.comment}"/></th>
-                    <th><a href="editUser.htm?user_id=<c:out value='${deal.deal_id}'/>">Edit</a></th>
-                    <th><a href="deleteUser.htm?user_id=<c:out value='${deal.deal_id}'/>">Delete</a></th>
-                    //change sales stage drop down
+                    <th><a href="editDeal.htm?deal_id=<c:out value='${deal.deal_id}'/>">Edit</a></th>
+                    <th><a href="deleteDeal.htm?deal_id=<c:out value='${deal.deal_id}'/>">Delete</a></th>
+                    
                 </tr>
             </c:forEach>
         </table>        

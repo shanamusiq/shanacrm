@@ -77,6 +77,14 @@ public class ClientController {
             return "redirect:clientPage.htm";
 
         }
+ @RequestMapping(value = "/updateStage.htm")
+        public String SaleStagePage(@RequestParam("client_id") int client_id, ModelMap model) {
+            Client client = new Client();
+            client.setClient_id(client_id);
+            System.out.println("Deleting Client " + client_id);
+            //int result = clientService.delete(client);
+            return "redirect:clientPage.htm";
 
+        }
     }
 

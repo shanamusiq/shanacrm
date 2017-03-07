@@ -24,6 +24,15 @@ public class Registrant implements Serializable {
     private String user_name;
     private int credit_card_pin;
     private int level;
+    private String city;
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     public String getUser_name() {
         return user_name;
@@ -40,7 +49,6 @@ public class Registrant implements Serializable {
     public void setLevel(int level) {
         this.level = level;
     }
-
 
     public int getCredit_card_pin() {
         return credit_card_pin;

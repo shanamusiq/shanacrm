@@ -25,6 +25,7 @@ public class Prospect implements Serializable {
     private int credit_card_pin;
     private int user_id;
     private int credit_card_exp;
+    private String city;
 
     public int getCredit_card_exp() {
         return credit_card_exp;
@@ -41,8 +42,6 @@ public class Prospect implements Serializable {
     public void setCity(String city) {
         this.city = city;
     }
-    private String city;
-    //
 
     public int getUser_id() {
         return user_id;

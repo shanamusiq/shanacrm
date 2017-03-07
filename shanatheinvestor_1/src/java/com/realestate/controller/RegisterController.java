@@ -5,6 +5,7 @@
  */
 package com.realestate.controller;
 
+import com.realestate.MyLogger;
 import com.realestate.model.*;
 import com.realestate.services.LoginService;
 import com.realestate.services.RegisterService;
@@ -44,13 +45,18 @@ public class RegisterController {
 
         return "registerPage";
     }
-
+// Validate Method needs to be added to Cliet/Prospect/Admin
     @RequestMapping(value = "/submitRegisterPage.htm")
     public String submitForm(@ModelAttribute("registrant") Registrant registrant, ModelMap model) {
-        Prospect prospect = registerService.register(registrant);
-        model.addAttribute(prospect);
-        return "redirect:fromRegisterPage.htm";
+        if (registerService.validate(registrant)) {
+            Prospect prospect = registerService.register(registrant);
+            model.addAttribute(prospect);
+            MyLogger.log(prospect.getFirst_name() + prospect.getLast_name() + " is registered");
+            return "redirect:fromRegisterPage.htm";
+        } else {
+            registrant.setCredit_card("***invalid***");
+            return "registerPage";
+        }
 
     }
-
 }

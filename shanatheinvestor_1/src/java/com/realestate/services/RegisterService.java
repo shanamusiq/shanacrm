@@ -15,4 +15,6 @@ import com.realestate.model.*;
 public interface RegisterService {
     public Prospect  register (Registrant registrant);
     
+   public boolean  validate (Registrant registrant); 
+    
 }

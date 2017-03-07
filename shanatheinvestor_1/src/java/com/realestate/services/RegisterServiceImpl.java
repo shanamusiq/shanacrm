@@ -5,6 +5,7 @@
  */
 package com.realestate.services;
 
+import com.mysql.jdbc.StringUtils;
 import com.realestate.model.*;
 import com.realestate.services.database.ProspectDBAccess;
 import com.realestate.services.database.UserDBAccess;
@@ -41,5 +42,14 @@ public class RegisterServiceImpl implements RegisterService {
         ProspectDBAccess.edit(prospect);
         
             return prospect;
+    }
+
+    @Override
+    public boolean validate(Registrant registrant) {
+      boolean valid = true;
+      if (!StringUtils.isStrictlyNumeric(registrant.getCredit_card())){
+          return false;
+      }
+      return valid;
     }
 }

@@ -42,6 +42,10 @@
                     <td><form:input path="state" /></td>
                 </tr>
                 <tr>
+                    <td>City :</td>
+                    <td><form:input path="city" /></td>
+                </tr>    
+                <tr>
                     <td>Postal Code :</td>
                     <td><form:input path="postal_code" /></td>
                 </tr>

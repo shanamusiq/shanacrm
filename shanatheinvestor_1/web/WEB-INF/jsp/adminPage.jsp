@@ -122,5 +122,7 @@
         </table>        
         <br>
         <a href="editClient.htm?client_id=0">Add Client</a>
-    </body>
+        <br>
+        <a href="GoToInteractionPage.htm">Interactions Page</a>
+    
 </html>

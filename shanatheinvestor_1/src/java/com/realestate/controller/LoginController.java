@@ -5,6 +5,7 @@
  */
 package com.realestate.controller;
 
+import com.realestate.MyLogger;
 import com.realestate.model.*;
 import com.realestate.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,7 @@ public class LoginController {
      int level = loginService.login(user);
         switch (level) {
             case User.PROSPECTROLE :
+                MyLogger.log(user.getUser_name()+ " has logged in");
                 return "redirect:prospectPage.htm";
             case User.CLIENTROLE :
                 return "redirect:clientPage.htm";
