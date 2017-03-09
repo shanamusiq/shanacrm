@@ -32,7 +32,7 @@ public class InteractionDBAccess {
         ArrayList<Interaction> interactions = new ArrayList<>();
         try {
             Connection conn = getConnection();
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM interaction");
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM interactions1");
             ResultSet set = statement.executeQuery();
             while (set.next()) {
                 Interaction interaction = new Interaction();
@@ -45,7 +45,7 @@ public class InteractionDBAccess {
                 interaction.setClient_id(set.getInt(7));
                 interaction.setComments(set.getString(8));
                 interactions.add(interaction);
-                //System.out.println (client.getName());
+                System.out.println (interaction.getComments());
             }
         } catch (Exception ex) {
             System.out.println(ex);
@@ -58,27 +58,27 @@ public class InteractionDBAccess {
         try {
             Connection conn = getConnection();
             if (interaction.getInteraction_id()== 0) {
-                PreparedStatement statement = conn.prepareStatement("INSERT INTO interactions (interaction_id, user_id, name, "
+                PreparedStatement statement = conn.prepareStatement("INSERT INTO interactions1 (interaction_id, user_id, name, "
                         + "email, phone, prospect_id, client_id, comments) "
-                        + "values (\"" + interaction.getInteraction_id()+ "\" ,  \""
-                        + interaction.getUser_id() + "\", \"" + interaction.getName()
+                        + "values (" + interaction.getInteraction_id()+ " ,  "
+                        + interaction.getUser_id() + ", \"" + interaction.getName()
                         + "\" ,  \"" + interaction.getEmail() + "\",\"" + interaction.getPhone()
-                        + "\" ,  \"" + interaction.getProspect_id() + "\",\"" + interaction.getClient_id() + "\" ,  \""
-                        + interaction.getComments() + ")");
+                        + "\" ,  " + interaction.getProspect_id() + "," + interaction.getClient_id() + " ,  \""
+                        + interaction.getComments()  + "\")" );
                
                 result
                         = statement.executeUpdate();
             } else {
-                PreparedStatement statement = conn.prepareStatement("UPDATE interactions set interaction_id = \""
-                        + interaction.getInteraction_id()
-                        + "\" , user_id = \"" + interaction.getUser_id()
-                        + "\" , name = \"" + interaction.getName()
+                PreparedStatement statement = conn.prepareStatement("UPDATE interactions1 set user_id = "
+                       
+                        + interaction.getUser_id()
+                        + ", name = \"" + interaction.getName()
                         + "\" , email = \"" + interaction.getEmail()
-                        + "\", phone = " + interaction.getPhone()                    
-                        + "\" , prospect_id = \"" + interaction.getProspect_id()
-                        + "\" , client_id = \"" + interaction.getClient_id()
-                        + "\" , comments = \"" + interaction.getComments()
-                        + " WHERE interaction_id = " + interaction.getInteraction_id());
+                        + "\", phone = \"" + interaction.getPhone()                    
+                        + "\" , prospect_id = " + interaction.getProspect_id()
+                        + " , client_id = " + interaction.getClient_id()
+                        + " , comments = \"" + interaction.getComments()
+                        + "\" WHERE interaction_id = " + interaction.getInteraction_id());
                 result = statement.executeUpdate();
             }
 
@@ -97,7 +97,7 @@ public class InteractionDBAccess {
         int result = 0;
         try {
             Connection conn = getConnection();
-            PreparedStatement statement = conn.prepareStatement("DELETE from interactions WHERE interaction_id = "
+            PreparedStatement statement = conn.prepareStatement("DELETE FROM interactions1 WHERE interaction_id = "
                     + interaction.getInteraction_id());
             result = statement.executeUpdate();
 
@@ -112,7 +112,7 @@ public class InteractionDBAccess {
         Interaction interaction = new Interaction();
         try {
             Connection conn = getConnection();
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM interactions WHERE interaction_id = " + interaction_id);
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM interactions1 WHERE interaction_id = " + interaction_id);
             ResultSet set = statement.executeQuery();
             if (set.next()) {
                 interaction.setUser_id(set.getInt(2));
