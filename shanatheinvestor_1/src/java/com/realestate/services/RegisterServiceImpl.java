@@ -16,6 +16,11 @@ import com.realestate.services.database.UserDBAccess;
  */
 public class RegisterServiceImpl implements RegisterService {
 
+    /**
+     * Method sets all new registrants that login through portal as prospects
+     * @param registrant
+     * @return
+     */
     @Override
     public Prospect register(Registrant registrant) {
         User user = new User();
@@ -44,6 +49,11 @@ public class RegisterServiceImpl implements RegisterService {
             return prospect;
     }
 
+    /**
+     * Validates that the credit card info input are all numbers no letters
+     * @param registrant
+     * @return
+     */
     @Override
     public boolean validate(Registrant registrant) {
       boolean valid = true;
