@@ -14,11 +14,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
- *
+ * Method used to connect to the database and control all the functions associated
+ * with the client database
  * @author Shana
  */
 public class ClientDBAccess {
 
+    /**
+     * Connects to the database (shanacrm)
+     * @return
+     */
     public static Connection getConnection() {
         Connection conn = null;
         try {
@@ -30,11 +35,16 @@ public class ClientDBAccess {
         return conn;
     }
 
+    /**
+     * Retrieves the list of clients in the database to displace in clients 
+     * section
+     * @return
+     */
     public static ArrayList<Client> getClients() {
         ArrayList<Client> clients = new ArrayList<>();
         try {
             Connection conn = getConnection();
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM clients");
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM clients1");
             ResultSet set = statement.executeQuery();
             while (set.next()) {
                 Client client = new Client();
@@ -61,12 +71,17 @@ public class ClientDBAccess {
         return clients;
     }
 
+    /**
+     * Updates the database with the changes made when editing client info.
+     * @param client
+     * @return
+     */
     public static int edit(Client client) {
         int result = 0;
         try {
             Connection conn = getConnection();
             if (client.getClient_id() == 0) {
-                PreparedStatement statement = conn.prepareStatement("INSERT INTO clients (first_name, last_name, "
+                PreparedStatement statement = conn.prepareStatement("INSERT INTO clients1 (first_name, last_name, "
                         + "phone, address, state, zip_code, credit_card, client_id, email, password, card_pin, card_exp, city, user_id) "
                         + "values (\"" + client.getFirst_name() + "\" ,  \""
                         + client.getLast_name() + "\", \"" + client.getPhone()
@@ -81,17 +96,17 @@ public class ClientDBAccess {
                 result
                         = statement.executeUpdate();
             } else {
-                PreparedStatement statement = conn.prepareStatement("UPDATE clients set first_name = \""
+                PreparedStatement statement = conn.prepareStatement("UPDATE clients1 set first_name = \""
                         + client.getFirst_name()
                         + "\" , last_name = \"" + client.getLast_name()
-                        + "\", phone = " + client.getUser_id()
+                        + "\", phone = \" " + client.getPhone()
                         + "\" , address = \"" + client.getAddress()
                         + "\" , city = \"" + client.getCity()
                         + "\" , state = \"" + client.getState()
-                        + "\" , zip = \"" + client.getPostal_code()
-                        + "\" , card = \"" + client.getCredit_card()
-                        + "\" , card_exp = \"" + client.getCredit_card_exp()
-                        + "\" , card_pin = \"" + client.getCredit_card_pin()
+                        + "\" , zip_code = \"" + client.getPostal_code()
+                        + "\" , credit_card = \"" + client.getCredit_card()
+                        + "\" , card_exp = " + client.getCredit_card_exp()
+                        + " , card_pin = " + client.getCredit_card_pin()
                         + " WHERE client_id = " + client.getClient_id());
                 result = statement.executeUpdate();
             }
@@ -107,11 +122,16 @@ public class ClientDBAccess {
 
     }
 
+    /**
+     * Deletes the client from the database
+     * @param client
+     * @return
+     */
     public static int delete(Client client) {
         int result = 0;
         try {
             Connection conn = getConnection();
-            PreparedStatement statement = conn.prepareStatement("DELETE from clients WHERE client_id = "
+            PreparedStatement statement = conn.prepareStatement("DELETE FROM clients1 WHERE client_id = "
                     + client.getClient_id());
             result = statement.executeUpdate();
 
@@ -122,11 +142,43 @@ public class ClientDBAccess {
 
     }
 
+    /**
+     * Saves new client to the database
+     * @param client_id
+     * @return
+     */
     public static Client getClient(int client_id) {
         Client client = new Client();
         try {
             Connection conn = getConnection();
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM clients WHERE client_id = " + client_id);
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM clients1 WHERE client_id = " + client_id);
+            ResultSet set = statement.executeQuery();
+            if (set.next()) {
+                client.setFirst_name(set.getString(1));
+                client.setLast_name(set.getString(2));
+                client.setPhone(set.getString(3));
+                client.setAddress(set.getString(4));
+                client.setState(set.getString(5));
+                client.setPostal_code(set.getString(6));
+                client.setCredit_card(set.getString(7));
+                client.setClient_id(set.getInt(8));
+                client.setEmail(set.getString(9));
+                client.setPassword(set.getString(10));
+                client.setCredit_card_pin(set.getInt(11));
+                client.setCredit_card_exp(set.getInt(12));
+                client.setCity(set.getString(13));
+                client.setUser_id(set.getInt(14));
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return client;
+    }
+        public static Client getClientWithUser(int user_id) {
+        Client client = new Client();
+        try {
+            Connection conn = getConnection();
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM clients1 WHERE user_id = " + user_id);
             ResultSet set = statement.executeQuery();
             if (set.next()) {
                 client.setFirst_name(set.getString(1));

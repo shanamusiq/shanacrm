@@ -7,8 +7,8 @@ package com.realestate.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.realestate.model.Client;
-import com.realestate.services.database.ClientDBAccess;
+import com.realestate.model.*;
+import com.realestate.services.database.*;
 
 
 /**
@@ -36,6 +36,26 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client getClient(int client_id) {
         return ClientDBAccess.getClient(client_id);
+    }
+       @Override
+    public List<Deal> getDeals(int client_id) {
+        List<Deal> deals = DealDBAccess.getDeals(client_id);
+        return deals;
+    }
+
+    @Override
+    public int edit(Deal deal) {
+        return DealDBAccess.edit(deal);
+    }
+
+    @Override
+    public int delete(Deal deal) {
+        return DealDBAccess.delete(deal);
+    }
+    
+    @Override
+    public Deal getDeal(int deal_id) {
+        return DealDBAccess.getDeal(deal_id);
     }
 
 }

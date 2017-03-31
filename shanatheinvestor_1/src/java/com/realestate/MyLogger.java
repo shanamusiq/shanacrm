@@ -11,11 +11,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
+ * Method that enables printing out actions that take place within the system
  * @author Shana
  */
 public class MyLogger {
 
+    /**
+     * Method prints actions to a file saved in documents on computer. Running log
+     * @param text
+     */
     public static void log(String text) {
         ArrayList<String> lines = new ArrayList<>();
         try {

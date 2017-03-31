@@ -21,11 +21,11 @@
     </head>
     <body>
         <br/>
-        <br/>
-     <div style="max-width: 600px; margin-left:auto;margin-right:auto">
-
+        <br/> 
+        
+        <div class="w3-modal-content w3-animate-opacity" style="max-width: 600px;">
           <div class="w3-center">
-            <img class="w3-circle w3-margin-right" style="width: 30%;" alt="Avatar" src="/ChinookSpring/media/img/avatar.png">
+            <img class="w3-circle w3-margin-top" style="width: 50%;" alt="Avatar" src="/ChinookSpring/media/img/avatar.png">
           </div>
         <form:form method="POST" commandName="registrant" action="submitRegisterPage.htm">
             <table>
@@ -67,14 +67,14 @@
                 </tr>
                 <tr>
                     <td>Credit Card # :</td>
-                    <td><form:input class="w3-input w3-border w3-margin-bottom" path="credit_card" placeholder="Enter Credit Card Number"/></td>
+                    <td><form:input class="w3-input w3-border w3-margin-bottom" path="credit_card" placeholder="Enter Credit Card #"/></td>
                 </tr>
                 <tr>
                     <td>Credit Card Pin # :</td>
                     <td><form:input class="w3-input w3-border w3-margin-bottom" path="credit_card_pin" placeholder="Enter Credit Card Pin"/></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="submit" value="register"></td>
+                    <td colspan="2"><input class="w3-btn-block w3-black w3-section w3-padding" type="submit" value="register"></td>
                 </tr>
                 
             </table>

@@ -14,7 +14,7 @@ import com.realestate.model.WholesaleCalculator;
 public class CalculatorServiceImpl implements CalculatorService {
 
     /**
-     *
+     * Formula for calculator
      * @param wholesalecalculator
      * @return
      */

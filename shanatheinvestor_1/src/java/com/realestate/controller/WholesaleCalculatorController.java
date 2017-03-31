@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
- *
+ * Methods that retrieve and control wholesale calc
  * @author Shana
  */
 @Controller
@@ -25,7 +25,7 @@ public class WholesaleCalculatorController {
     private CalculatorService calculatorService;
 
     /**
-     *
+     * 
      * @param calculatorService
      */
     @Autowired
@@ -34,7 +34,7 @@ public class WholesaleCalculatorController {
     }
     
     /**
-     *
+     * Retrieves page with that contains calc
      * @param model
      * @return
      */
@@ -47,7 +47,7 @@ public class WholesaleCalculatorController {
     }
 
     /**
-     *
+     * Submits the inputs from the wholesale calc form
      * @param wholesalecalculator
      * @param model
      * @return

@@ -41,12 +41,9 @@
 
         <table border="2" width="70%" cellpadding="2">
             <tr>
-                <th>User ID</th>
                 <th>Name (Customer)</th>
                 <th>Email(Customer)</th>
                 <th>Phone(Customer)</th>
-                <th>Prospect ID</th>
-                <th>Client ID</th>
                 <th>Comments</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -54,12 +51,9 @@
             </tr>
             <c:forEach items="${interactionList}" var="interaction">
                 <tr>
-                    <td><c:out value="${interaction.user_id}"/></td>
                     <td><c:out value="${interaction.name}"/></td>
                     <td><c:out value="${interaction.email}"/></td>
                     <td><c:out value="${interaction.phone}"/></td>
-                    <td><c:out value="${interaction.prospect_id}"/></td>
-                    <td><c:out value="${interaction.client_id}"/></td>
                     <td><c:out value="${interaction.comments}"/></td>
 
                     <td><a href="editInteraction.htm?interaction_id=<c:out value='${interaction.interaction_id}'/>">Edit</a></td>

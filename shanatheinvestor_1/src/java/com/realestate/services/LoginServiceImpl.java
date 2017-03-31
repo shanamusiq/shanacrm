@@ -5,8 +5,10 @@
  */
 package com.realestate.services;
 
+import com.realestate.model.Client;
 import java.util.ArrayList;
 import com.realestate.model.User;
+import com.realestate.services.database.ClientDBAccess;
 import com.realestate.services.database.UserDBAccess;
 /**
  *
@@ -14,6 +16,11 @@ import com.realestate.services.database.UserDBAccess;
  */
 public class LoginServiceImpl implements LoginService {
 
+    /**
+     * Method for creation of users during login
+     * @param user
+     * @return
+     */
     @Override
     public int login(User user) {
         int level = 0;
@@ -28,6 +35,9 @@ public class LoginServiceImpl implements LoginService {
 
         }
         return level;
+    } // Allows to pull in user
+    public Client getClient (User user) {
+        Client client = ClientDBAccess.getClientWithUser(user.getUser_id());
+        return client;
     }
-
 }

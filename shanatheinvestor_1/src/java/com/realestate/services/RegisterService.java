@@ -9,7 +9,7 @@ import com.realestate.model.Registrant;
 import com.realestate.services.*;
 import com.realestate.model.*;
 /**
- *
+ *Methods for registrants and validating credit card input
  * @author Shana
  */
 public interface RegisterService {

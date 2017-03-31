@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import com.realestate.model.Prospect;
 import com.realestate.services.database.ProspectDBAccess;
 /**
- *
+ * Method for prospect at login
  * @author Shana
  */
 public class ProspectServiceImpl implements ProspectService {
 
     /**
-     *
+     * Sets prospects at login
      * @param prospect
      * @return
      */

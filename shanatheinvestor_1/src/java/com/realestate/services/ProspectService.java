@@ -7,7 +7,7 @@ package com.realestate.services;
 
 import com.realestate.model.Prospect;
 /**
- *
+ * Method for prospect/registrant at login
  * @author Shana
  */
 public interface ProspectService {

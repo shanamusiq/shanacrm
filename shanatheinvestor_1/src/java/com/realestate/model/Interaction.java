@@ -5,11 +5,13 @@
  */
 package com.realestate.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Shana
  */
-public class Interaction {
+public class Interaction implements Serializable { 
     private int client_id;
     private int prospect_id;
     private String phone;

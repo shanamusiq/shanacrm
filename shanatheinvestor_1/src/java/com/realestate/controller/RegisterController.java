@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
- *
+ * Methods control registration
  * @author Shana
  */
 @Controller
@@ -29,13 +29,19 @@ public class RegisterController {
 
     /**
      *
-     * @param RegisterService
+     * @param registerService
      */
     @Autowired
     public void setRegisterService(RegisterService registerService) {
         this.registerService = registerService;
     }
 
+    /**
+     * Sets up the page with blank data for the registrants/placeholder for registrant;
+     * registrant page is displayed
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/registerPage.htm")
     public String showRegisterForm(ModelMap model) {
         Prospect prospect = new Prospect();
@@ -45,7 +51,15 @@ public class RegisterController {
 
         return "registerPage";
     }
-// Validate Method needs to be added to Cliet/Prospect/Admin
+
+
+    /**
+     * Submits the info from the registration form and saves info to the registrant.
+     * Returns invalid if all inputs in cc info are not numbers.
+     * @param registrant
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/submitRegisterPage.htm")
     public String submitForm(@ModelAttribute("registrant") Registrant registrant, ModelMap model) {
         if (registerService.validate(registrant)) {

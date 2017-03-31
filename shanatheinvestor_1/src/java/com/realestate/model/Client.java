@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Shana
+ * @author Shana  Getters and Setters for Client
  */
 public class Client implements Serializable {
     private String first_name;

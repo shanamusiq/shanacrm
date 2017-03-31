@@ -1,6 +1,6 @@
 <%-- 
-    Document   : editClientPage
-    Created on : Jan 28, 2017, 11:30:55 AM
+    Document   : editDealsPage
+    Created on : Jan 28, 2017, 11:31:49 AM
     Author     : Shana
 --%>
 
@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title>Client Page</title>
+        <title>Deals Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -20,27 +20,20 @@
 
     </head>
     <body>
-          <div class="w3-modal-content w3-animate-opacity" style="max-width: 600px;">
-          <div class="w3-center">
-          </div>
-        <form:form method="POST" commandName="client" action="submitEditClientPage.htm">
-            
+        <div class="w3-modal-content w3-animate-opacity" style="max-width: 600px;">
+        <form:form method="POST" commandName="deal" action="submitEditDealPage.htm">
             <br>
             <br>
             <br>
+            <form:hidden path = "client_id"/>
             <table>
-                
                 <tr>
-                    <td>First Name :</td>
-                    <td><form:input path="first_name" /></td>
+                    <td>Customer Name :</td>
+                    <td><form:input path="customer_name" /></td>
                 </tr>
                 <tr>
-                    <td>Last Name :</td>
-                    <td><form:input path="last_name" /></td>
-                </tr>
-                <tr>
-                    <td>Phone :</td>
-                    <td><form:password path="phone" /></td>
+                    <td>Customer Phone :</td>
+                    <td><form:input path="customer_phone" /></td>
                 </tr>
                 <tr>
                     <td>Address :</td>
@@ -51,37 +44,42 @@
                     <td><form:input path="state" /></td>
                 </tr>
                 <tr>
+                    <td>Property Postal Code :</td>
+                    <td><form:input path="property_postal_code" /></td>
+                </tr>
+                <tr>
+                    <td>Property Address :</td>
+                    <td><form:input path="property_address" /></td>
+                </tr>
+                <tr>
+                    <td>Property State :</td>
+                    <td><form:input path="property_state" /></td>
+                </tr>
+                <tr>
                     <td>Postal Code :</td>
                     <td><form:input path="postal_code" /></td>
                 </tr>
-                 <tr>
-                    <td>Credit Card Number :</td>
-                    <td><form:input path="credit_card" /></td>
-                </tr>
-                 <tr>
-                    <td>Credit Card Pin :</td>
-                    <td><form:input path="credit_card_pin" /></td>
-                </tr>
-                 <tr>
-                    <td>Credit Card Exp :</td>
-                    <td><form:input path="credit_card_exp" /></td>
-                </tr>
-                 <tr>
-                    <td>Email :</td>
-                    <td><form:input path="email" /></td>
+                <tr>
+                    <td>Sales Stage :</td>
+                    <td><form:input path="sales_stage" /></td>
                 </tr>
                 <tr>
-                    <td>Password :</td>
-                    <td><form:input path="password" /></td>
+                    <td>Amount :</td>
+                    <td><form:input path="amount" /></td>
                 </tr>
                 <tr>
-                    <td>City :</td>
-                    <td><form:input path="city" /></td>
+                    <td>Close Date :</td>
+                    <td><form:input path="close_date" /></td>
+                </tr>
+                <tr>
+                    <td>Comments :</td>
+                    <td><form:input path="comment" /></td>
                 </tr>
                 <tr>
                     <td colspan="2"><input type="submit"></td>
                 </tr>
             </table>
         </form:form>
+        </div>
     </body>
 </html>

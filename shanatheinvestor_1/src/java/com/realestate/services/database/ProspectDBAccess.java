@@ -13,11 +13,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
- *
- * @author jus1t
+ * Method used to connect to the database and control all the functions associated
+ * with the prospects database
+ * @author Shana
  */
 public class ProspectDBAccess {
 
+    /**
+     * Connects to the database (shanacrm)
+     * @return
+     */
     public static Connection getConnection() {
         Connection conn = null;
         try {
@@ -29,6 +34,11 @@ public class ProspectDBAccess {
         return conn;
     }
 
+    /**
+     * Retrieves the list of prospects within the database to display in prospect
+     * section
+     * @return
+     */
     public static ArrayList<Prospect> getProspects() {
         ArrayList<Prospect> prospects = new ArrayList<>();
         try {
@@ -60,6 +70,11 @@ public class ProspectDBAccess {
         return prospects;
     }
 
+    /**
+     * Saves updates from the changes made in the edit form
+     * @param prospect
+     * @return
+     */
     public static int edit(Prospect prospect) {
         int result = 0;
         try {
@@ -83,14 +98,14 @@ public class ProspectDBAccess {
                 PreparedStatement statement = conn.prepareStatement("UPDATE prospects set first_name = \""
                         + prospect.getFirst_name()
                         + "\" , last_name = \"" + prospect.getLast_name()
-                        + "\", phone = " + prospect.getUser_id()
+                        + "\", phone = \" " + prospect.getPhone()
                         + "\" , address = \"" + prospect.getAddress()
                         + "\" , city = \"" + prospect.getCity()
                         + "\" , state = \"" + prospect.getState()
-                        + "\" , zip = \"" + prospect.getPostal_code()
-                        + "\" , card = \"" + prospect.getCredit_card()
-                        + "\" , card_exp = \"" + prospect.getCredit_card_exp()
-                        + "\" , card_pin = \"" + prospect.getCredit_card_pin()
+                        + "\" , zip_code = \"" + prospect.getPostal_code()
+                        + "\" , credit_card = \"" + prospect.getCredit_card()
+                        + "\" , card_exp = " + prospect.getCredit_card_exp()
+                        + " , card_pin = " + prospect.getCredit_card_pin()
                         + " WHERE id = " + prospect.getProspect_id());
                 result = statement.executeUpdate();
             }
@@ -106,11 +121,16 @@ public class ProspectDBAccess {
 
     }
 
+    /**
+     * Deletes prospects from database
+     * @param prospect
+     * @return
+     */
     public static int delete(Prospect prospect) {
         int result = 0;
         try {
             Connection conn = getConnection();
-            PreparedStatement statement = conn.prepareStatement("DELETE from prospects WHERE id = "
+            PreparedStatement statement = conn.prepareStatement("DELETE FROM prospects WHERE id = "
                     + prospect.getProspect_id());
             result = statement.executeUpdate();
 
@@ -120,6 +140,11 @@ public class ProspectDBAccess {
         return result;
     }
 
+    /**
+     * Saves new prospect to the database, for prospect creation 
+     * @param prospect_id
+     * @return
+     */
     public static Prospect getProspect(int prospect_id) {
         Prospect prospect = new Prospect();
         try {

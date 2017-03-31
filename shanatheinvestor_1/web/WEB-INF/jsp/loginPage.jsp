@@ -37,37 +37,12 @@
               <form:input path="user_name" class="w3-input w3-border w3-margin-bottom" required="" type="text" placeholder="Enter Username"/>
               <label><b>Password</b></label>
               <form:password path="password" class="w3-input w3-border" required="" placeholder="Enter Password" />
-              <button class="w3-btn-block w3-green w3-section w3-padding" type="submit">Login</button>
+              <button class="w3-btn-block w3-black w3-section w3-padding" type="submit">Login</button>
               <a href="register.htm">Register</a>
             </div>
           </form:form>
 
    </div>       
-        
-        
-        
-        
-     <!--   
-        
-        <form:form method="POST" commandName="user" action="frontPage.htm">
-            <table>
-                <tr>
-                    <td>User Name :</td>
-                    <td><form:input path="user_name" /></td>
-                </tr>
-                <tr>
-                    <td>Password :</td>
-                    <td><form:password path="password" /></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="submit"></td>
-                </tr>
-                <tr>
-                    <td colspan="2"> <a href="register.htm">Register</a></td>
-                </tr>
-            </table>
-        </form:form>
--->
 
     </body>
 </html>

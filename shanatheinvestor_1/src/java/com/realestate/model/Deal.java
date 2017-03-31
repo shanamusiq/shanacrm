@@ -26,30 +26,7 @@ public class Deal implements Serializable {
     private int amount;
     private String close_date;
     private String comment;
-
-    public String getSales_stage() {
-        return sales_stage;
-    }
-
-    public void setSales_stage(String sales_stage) {
-        this.sales_stage = sales_stage;
-    }
-
-    public String getPostal_code() {
-        return postal_code;
-    }
-
-    public void setPostal_code(String postal_code) {
-        this.postal_code = postal_code;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+    private int client_id;
 
     public String getCustomer_name() {
         return customer_name;
@@ -83,36 +60,12 @@ public class Deal implements Serializable {
         this.state = state;
     }
 
-    public String getZip_code() {
+    public String getPostal_code() {
         return postal_code;
     }
 
-    public void setZip_code(String zip_code) {
-        this.postal_code = zip_code;
-    }
-
-    public String getProperty_postal_code() {
-        return property_postal_code;
-    }
-
-    public void setProperty_zip_code(String property_postal_code) {
-        this.property_postal_code = property_postal_code;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public String getClose_date() {
-        return close_date;
-    }
-
-    public void setClose_date(String close_date) {
-        this.close_date = close_date;
+    public void setPostal_code(String postal_code) {
+        this.postal_code = postal_code;
     }
 
     public int getDeal_id() {
@@ -139,4 +92,53 @@ public class Deal implements Serializable {
         this.property_state = property_state;
     }
 
+    public String getProperty_postal_code() {
+        return property_postal_code;
+    }
+
+    public void setProperty_postal_code(String property_postal_code) {
+        this.property_postal_code = property_postal_code;
+    }
+
+    public String getSales_stage() {
+        return sales_stage;
+    }
+
+    public void setSales_stage(String sales_stage) {
+        this.sales_stage = sales_stage;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public String getClose_date() {
+        return close_date;
+    }
+
+    public void setClose_date(String close_date) {
+        this.close_date = close_date;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public int getClient_id() {
+        return client_id;
+    }
+
+    public void setClient_id(int client_id) {
+        this.client_id = client_id;
+    }
+
+   
 }

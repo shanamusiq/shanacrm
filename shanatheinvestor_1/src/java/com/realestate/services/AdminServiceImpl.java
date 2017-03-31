@@ -64,6 +64,9 @@ public class AdminServiceImpl implements AdminService {
         int n = ClientDBAccess.edit(client);
         if(n>0){
             n = ProspectDBAccess.delete(prospect);
+            User user = UserDBAccess.getUser(prospect.getUser_id());
+            user.setLevel(User.CLIENTROLE);
+            n = UserDBAccess.edit(user);
         }
         return n;
     
@@ -106,9 +109,12 @@ public class AdminServiceImpl implements AdminService {
         int n = ProspectDBAccess.edit(prospect);
         if(n>0){
             n = ClientDBAccess.delete(client);
+            User user = UserDBAccess.getUser(client.getUser_id());
+            user.setLevel(User.PROSPECTROLE);
+            n = UserDBAccess.edit(user);
         }
         return n;
     
     }
-// Add Interactions
+
 }

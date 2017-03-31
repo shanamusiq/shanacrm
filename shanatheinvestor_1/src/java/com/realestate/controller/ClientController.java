@@ -18,66 +18,124 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
- *
+ * These methods are used to retrieve pages that update, delete, and edit the
+ * deals listed on client page
  * @author Shana
  */
 @Controller
 @SessionAttributes("client")
 public class ClientController {
 
+    /**
+     * Retrieves the client page 
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/clientPage.htm")
-    public String showClientForm(ModelMap model) {
-        Client client = new Client();
+    public String showClientForm(@ModelAttribute("client") Client client, ModelMap model) {
+
+        List<Deal> deals = clientService.getDeals(client.getClient_id());
+        model.addAttribute("dealList", deals);
         model.addAttribute(client);
+        System.out.println(client.getClient_id());
         return "clientPage";
     }
 
+    /**
+     * Link that goes to Wholesale Calc
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/goTowholesaleCalculatorFromClient.htm")
     public String goTowholesaleCalculator(ModelMap model) {
 
         return "redirect:wholesaleCalculatorPage.htm";
     }
- @RequestMapping(value = "/downloadDashboard.htm")
+
+    /**
+     * Method for downloading dashboard created in Excel
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/downloadDashboard.htm")
     public String downloadDashboard(ModelMap model) {
 
         return "test.txt";
     }
         private ClientService clientService;
 
-        @Autowired
+    /**
+     *
+     * @param clientService
+     */
+    @Autowired
         public void setClientService(ClientService clientService) {
             this.clientService = clientService;
         }
 
-        @RequestMapping(value = "/editDeal.htm")
-        public String editClientPage(@RequestParam("client_id") int client_id, ModelMap model) {
-            return "redirect:editClientPage.htm?client_id=" + client_id;
+    /**
+     * Method used to retrieve page where deals are listed.
+     * @param client_id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/editDeal.htm")
+        public String editClientPage(@RequestParam("deal_id") int deal_id, ModelMap model) {
+            return "redirect:editDealPage.htm?deal_id=" + deal_id;
         }
 
-        @RequestMapping(value = "/editDealPage.htm")
-        public String showEditClientPage(@RequestParam("client_id") int client_id, ModelMap model) {
-            Client client = clientService.getClient(client_id);
-            model.addAttribute("client", client);
-            return "editClientPage";
+    /**
+     * Method used to retrieve page with the form to edit deal;
+     * @param client_id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/editDealPage.htm")
+        public String showEditDealPage(@RequestParam("deal_id") int deal_id, ModelMap model) {
+            Deal deal = clientService.getDeal(deal_id);
+            Client client = (Client)model.get("client");
+            deal.setClient_id(client.getClient_id());
+            model.addAttribute("deal", deal);
+            System.out.println("client = " + client.getClient_id());
+            return "editDealPage";
         }
 
-        @RequestMapping(value = "/submitEditDealPage.htm")
-        public String submitEditClientPage(@ModelAttribute("client") Client client, ModelMap model) {
-            System.out.println("Editing " + client.getClient_id() + " : " + client.getEmail());
-            //int result = clientService.edit(client);
+    /**
+     * Submits the changes that were updated on edit deal form
+     * @param client
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/submitEditDealPage.htm")
+        public String submitEditDealPage(@ModelAttribute("deal") Deal deal, ModelMap model) {
+            System.out.println("Editing " + deal.getClient_id() + " " + deal.getDeal_id() + " : " + deal.getCustomer_name()+ " / " + deal.getPostal_code());
+            int result = clientService.edit(deal);
             return "redirect:clientPage.htm";
         }
 
-        @RequestMapping(value = "/deleteDeal.htm")
-        public String deleteClientPage(@RequestParam("client_id") int client_id, ModelMap model) {
-            Client client = new Client();
-            client.setClient_id(client_id);
-            System.out.println("Deleting Client " + client_id);
-            //int result = clientService.delete(client);
+    /**
+     * Method used to delete the deal and all corresponding information
+     * @param client_id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/deleteDeal.htm")
+        public String deleteDeletePage(@RequestParam("deal_id") int deal_id, ModelMap model) {
+            Deal deal = new Deal();
+            deal.setDeal_id(deal_id);
+            System.out.println("Deleting Deal" + deal_id);
+            int result = clientService.delete(deal);
             return "redirect:clientPage.htm";
 
         }
- @RequestMapping(value = "/updateStage.htm")
+
+    /**
+     * This method is used to change the sales stage of the deals
+     * @param client_id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/updateStage.htm")
         public String SaleStagePage(@RequestParam("client_id") int client_id, ModelMap model) {
             Client client = new Client();
             client.setClient_id(client_id);

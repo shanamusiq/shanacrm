@@ -18,6 +18,7 @@ public class RegisterServiceImpl implements RegisterService {
 
     /**
      * Method sets all new registrants that login through portal as prospects
+     * copying info from registrant to prospect
      * @param registrant
      * @return
      */
@@ -40,9 +41,12 @@ public class RegisterServiceImpl implements RegisterService {
         prospect.setPassword(registrant.getPassword());
         
         user.setUser_id(0);
+        //saves in the user database
         UserDBAccess.edit(user);
+        //creates user ID
         int id = UserDBAccess.latestId();
         prospect.setProspect_id(0);
+        //saves user ID (foreign key) into prospect databse
         prospect.setUser_id(id);
         ProspectDBAccess.edit(prospect);
         

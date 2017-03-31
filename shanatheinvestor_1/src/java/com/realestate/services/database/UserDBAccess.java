@@ -51,7 +51,7 @@ public class UserDBAccess {
     }
 
     /**
-     *
+     * Enables updating of users
      * @param user_id
      * @return
      */
@@ -86,7 +86,8 @@ public class UserDBAccess {
             } else {
                 PreparedStatement statement = conn.prepareStatement("UPDATE users set user_name = \"" + user.getUser_name()
                         + "\" , password = \"" + user.getPassword() + "\", level = " + user.getLevel()
-                        + "WHERE user_id = " + user.getUser_id());
+                        + " WHERE user_id = " + user.getUser_id());
+                result = statement.executeUpdate();
             }
         } catch (Exception ex) {
             System.out.println(ex);
@@ -98,7 +99,7 @@ public class UserDBAccess {
         int result = 0;
         try {
             Connection conn = getConnection();
-            PreparedStatement statement = conn.prepareStatement("DELETE users WHERE user_id = " + user.getUser_id());
+            PreparedStatement statement = conn.prepareStatement("DELETE FROM users WHERE user_id = " + user.getUser_id());
             result = statement.executeUpdate();
         } catch (Exception ex) {
             System.out.println(ex);

@@ -13,11 +13,17 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
- *
+ * Method used to connect to the database and control all the functions associated
+ * with the interactions database
  * @author Shana
  */
 public class InteractionDBAccess {
-     public static Connection getConnection() {
+
+    /**
+     * Connects to the database
+     * @return
+     */
+    public static Connection getConnection() {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -28,6 +34,10 @@ public class InteractionDBAccess {
         return conn;
      }
 
+    /**
+     * List interactions that are in the database
+     * @return
+     */
     public static ArrayList<Interaction> getInteractions() {
         ArrayList<Interaction> interactions = new ArrayList<>();
         try {
@@ -53,6 +63,11 @@ public class InteractionDBAccess {
         return interactions;
     }
 
+    /**
+     * Saves changes and updates to interactions in the database
+     * @param interaction
+     * @return
+     */
     public static int edit(Interaction interaction) {
         int result = 0;
         try {
@@ -93,6 +108,11 @@ public class InteractionDBAccess {
 
     }
 
+    /**
+     * Deletes interactions from the database
+     * @param interaction
+     * @return
+     */
     public static int delete(Interaction interaction) {
         int result = 0;
         try {
@@ -108,6 +128,11 @@ public class InteractionDBAccess {
 
     }
 
+    /**
+     * Saves new interaction from the database, for interaction creation
+     * @param interaction_id
+     * @return
+     */
     public static Interaction getInteraction(int interaction_id) {
         Interaction interaction = new Interaction();
         try {
